@@ -47,10 +47,12 @@ void Print_node(Node* node);
 void Print_tree(Tree* tree);
 int D_delete(Tree* tree);
 int d_timing(Node** temp);
+int Height(Node* node);
+int root_Height(Tree* tree);
 
 
-int(*fptr[])(Tree*) = { NULL, D_Insert_node, Print_table, D_delete, D_walk, D_find, D_find_min, Print_tree, d_timing };
-const char* msgs[] = { "0. Quit", "1. Add", "2. Print table", "3. Delete", "4. Walk", "5. Find", "6. Find min", "7. Like tree", "8. Timing" };
+int(*fptr[])(Tree*) = { NULL, D_Insert_node, Print_table, D_delete, D_walk, D_find, D_find_min, Print_tree, d_timing, root_Height };
+const char* msgs[] = { "0. Quit", "1. Add", "2. Print table", "3. Delete", "4. Walk", "5. Find", "6. Find min", "7. Like tree", "8. Timing", "9. Height" };
 const char* errors[] = { "Bad size of key \n", "Didnt find this key \n", "Tree is empty \n", "Bad input\n" };
 int dialog(const char* msgs[], int N);
 const int NMsgs = sizeof(msgs) / sizeof(msgs[0]);
@@ -698,7 +700,6 @@ int Delete_rel(Tree * tree, Node * *root, char* key, int release)
 						ptr->left = node_search->str.next_inf;
 					}
 				}
-
 				Delete_inf(node_search);
 				return 1;
 			}
@@ -875,7 +876,7 @@ int Delete_rel(Tree * tree, Node * *root, char* key, int release)
 			}
 			else
 			{
-				////
+				////а
 				ptr = node_search->parent;
 				if (node_search->left != NULL)
 				{
@@ -1101,6 +1102,14 @@ int Height(Node * node)
 	else { res = left; }
 
 	return res + 1;
+}
+
+int root_Height(Tree* tree) 
+{
+	int res = 0;
+	res = Height(tree->root);
+	printf("res = \n");
+	return 1;
 }
 
 void Print_node_tree(Node * node, int lvl)
